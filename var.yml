@@ -1,0 +1,11 @@
+---
+- hosts: machine2
+  vars:
+    - var1: variable1
+    - var2: variable2
+  tasks:
+    - name: variable
+      block:
+      - shell: echo '{{ var2 }}' > /home/ansible/varresult.txt
+      - file: path=/home/ansible/{{ var1 }} state=touch
+     

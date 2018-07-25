@@ -1,0 +1,7 @@
+---
+- hosts: machine2
+  gater_facts: no
+  tasks:
+    - name: check
+      when : ansible_os_family == 'redhat' or ansible_hostname == 'machine2'
+      file: path=/var/tmp/checl.txt state=touch

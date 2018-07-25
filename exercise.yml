@@ -1,0 +1,20 @@
+---
+- hosts: machine2
+  become: yes
+  tasks:
+    - name: first task
+      block:
+        - user: 
+            name: excuser
+            groups: sudo
+            password: $6$j0rlOeG0$iKfoSVskuZub0nF4WeeV/i5R6rcsMLxXiqLkwXSGYixnEDhUDuN8kh7QwgCDM9bDbJUITy.ozJpXztjjvVgdk1
+            state: present
+        - cron:
+            name: create a cron for user
+            user: excuser
+            minute: '*/5'
+            job: 'whoami >> /home/excuser/log.txt'
+          become_user: excuser
+        - file: 
+            path: /home/excuser/test.txt 
+            state: touch

@@ -1,0 +1,9 @@
+---
+- hosts: machine2
+  become: yes
+  vars_prompt:
+      - name: var3
+        prompt: enter the user name to create >
+  tasks:
+    - name: create user
+      user: name='{{ var3 }}' uid=1103 shell=/bin/bash state=present

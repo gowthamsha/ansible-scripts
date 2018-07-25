@@ -1,0 +1,14 @@
+---
+#create user
+- hosts: machine2
+  become: yes
+  tasks:
+    - name: create a user
+      user:
+        name: testuser
+        uid: 1101
+        groups: sudo
+        home: /home/testuser
+        shell: /bin/false
+        state: present
+        password: $6$M93SmR7F$uv9fqUgNQMA./rxGGEtQruOn3KZanrurliPdw0mYaE14y01QYR8yHKidcJT5pg99P8qcpV9KNjbsRyl3T.vgD.
