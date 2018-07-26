@@ -1,0 +1,10 @@
+---
+- name: task1
+  debug: msg=task1
+- name: install httpd
+  yum: name=httpd state=present
+  when: ansible_os_family == 'RedHat'
+  notify: hand
+- name: copy file
+  template: src=index.html.j2 dest=/var/www/html/index.html
+  when: ansible_os_family == 'RedHat'
